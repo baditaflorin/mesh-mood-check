@@ -36,4 +36,4 @@ There is intentionally no shared history map, no host role, no "team admin" anyt
 
 ## What this gives up
 
-A team that *wants* a longitudinal view (e.g. for a real retro) cannot have one from this tool. They should use a different tool that's honest about its data model. This tool serves the case where a quick daily gauge is useful and the cost of accidentally building a surveillance product is real.
+A team that _wants_ a longitudinal view (e.g. for a real retro) cannot have one from this tool. They should use a different tool that's honest about its data model. This tool serves the case where a quick daily gauge is useful and the cost of accidentally building a surveillance product is real.

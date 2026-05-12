@@ -24,7 +24,7 @@ Local date is computed with `new Date().getFullYear/getMonth/getDate()` — expl
 
 ## Consequences
 
-- **Pros.** Robust to phones that aren't open at midnight: the snapshot fires the first time the phone is awake on the new day. Robust to timezones: each peer's "today" is its own, and the aggregate counts whatever's tagged with that string. A peer in UTC-12 voting "today" tags it with one date; a peer in UTC+12 voting at the same wall-clock moment tags it with a different date. Their votes don't aggregate together — which is the honest semantics for a tool whose value is "how are people *today*."
+- **Pros.** Robust to phones that aren't open at midnight: the snapshot fires the first time the phone is awake on the new day. Robust to timezones: each peer's "today" is its own, and the aggregate counts whatever's tagged with that string. A peer in UTC-12 voting "today" tags it with one date; a peer in UTC+12 voting at the same wall-clock moment tags it with a different date. Their votes don't aggregate together — which is the honest semantics for a tool whose value is "how are people _today_."
 - **Pros.** No coordination, no leader, no scheduled events.
 - **Cons.** A 60-second poll is wasteful but trivial. A peer that backgrounded for 26 hours sees the snapshot for yesterday but loses the day before yesterday's. Accepted — the local history is best-effort, not a system of record.
 - **Cons.** Two peers in adjacent timezones see slightly different aggregates around the date boundary. Accepted — this is the correct behaviour.
