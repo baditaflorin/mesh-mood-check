@@ -1,6 +1,9 @@
 export const appConfig = {
   appName: "mesh-mood-check",
   storagePrefix: "mesh-mood-check",
+  description:
+    "Tap how you're doing — the room sees aggregate mood, never who said what. Ephemeral, peer-to-peer.",
+  accentHex: "#f5a524",
   version: __APP_VERSION__,
   commit: __GIT_COMMIT__,
   repositoryUrl: "https://github.com/baditaflorin/mesh-mood-check",
