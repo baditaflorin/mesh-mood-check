@@ -65,6 +65,19 @@ test("a mood cast on peer A appears in peer B's live aggregate (and vice versa)"
     // The empty-state placeholder is gone now that votes exist.
     await expect(b.locator(".mood-stacked-empty")).toHaveCount(0);
     await expect(b.locator(".mood-stacked")).toBeVisible();
+
+    // Last-write-wins per peer (the README's core data rule): when peer A
+    // CHANGES its vote, the old vote must NOT linger as a phantom count.
+    // A re-taps "okay" (index 2). The total stays 2 (A still has exactly one
+    // vote), A's old "great" drops to 0, and the new "okay" rises to 1 — all
+    // observed on peer B, proving the overwrite (moods.set on the same peer
+    // key) crossed the mesh rather than appending a second entry.
+    await a.getByRole("button", { name: "okay" }).click();
+    await expect(b.locator(".mood-hud")).toContainText(/2 moods today/, { timeout: 15_000 });
+    const bOkayPill = b.locator(".mood-count-pill", { hasText: FACES[2] });
+    await expect(bOkayPill.locator(".mood-count-num")).toHaveText("1");
+    await expect(bGreatPill.locator(".mood-count-num")).toHaveText("0");
+    await expect(bLowPill.locator(".mood-count-num")).toHaveText("1");
   } finally {
     await cleanup();
   }
